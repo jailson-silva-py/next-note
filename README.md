@@ -94,6 +94,7 @@
 - **NextAuth v5** - Autenticação
 - **Prisma 6** - ORM moderno
 - **Turso (LibSQL)** - Banco de dados distribuído
+- **Supabase (supabase.js)** - Storage(cloud para salvar imagens do profile)
 
 ### DevOps & Tools
 - **Vercel** - Deploy e hosting
