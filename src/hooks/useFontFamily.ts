@@ -9,49 +9,56 @@ import { PreferencesType } from "@/types/Preferences"
  const roboto = Roboto({
 
         display:'swap',
-        weight:['200', '300', '500', '700', '900']
+        weight:['200', '300', '500', '700', '900'],
+        subsets:['latin']
 
 })
 
 const badscript = Bad_Script({
 
         display:'swap',
-        weight:['400']
+        weight:['400'],
+        subsets:['latin']
 
 })
 
 const creepster = Creepster({
 
         display:'swap',
-        weight:['400']
+        weight:['400'],
+        subsets:['latin']
 
 })
 
 const montserrat = Montserrat({
 
         display:'swap',
-        weight:['300', '500', '700', '900']
+        weight:['300', '500', '700', '900'],
+        subsets:['latin']
 
 })
 
 const openSans = Open_Sans({
 
         display:'swap',
-        weight:['400', "300", "700"]
+        weight:['400', "300", "700"],
+        subsets:['latin']
 
     })
 
 const urbanist = Urbanist({
 
         display:'swap',
-        weight:['200', '300', '500', '700', '900']
+        weight:['200', '300', '500', '700', '900'],
+        subsets:['latin']
 
 })
 
 const allura = Allura({
 
         display:'swap',
-        weight:['400']
+        weight:['400'],
+        subsets:['latin']
 
 })
 

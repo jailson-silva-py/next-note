@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "postinstall": "prisma generate",
-    "dev": "next dev --turbopack",
-    "build": "prisma migrate deploy && next build --turbopack",
+    "dev": "next dev",
+    "build": "prisma migrate deploy && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
@@ -41,6 +41,7 @@
     "cypress": "^15.4.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "ignore-loader": "^0.1.2",
     "jsdom": "^27.0.0",
     "prisma": "^6.16.1",
     "typescript": "^5",
