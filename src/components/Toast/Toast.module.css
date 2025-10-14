@@ -1,0 +1,131 @@
+@keyframes descer {
+
+    from {margin-top: -20px; opacity: 0;}
+    to {margin-top:0; opacity:1;}
+
+}
+
+.toastContent {
+
+    z-index: 100;
+    position: fixed;
+    top:52px;
+    right: 10px;
+    height: 8vh;
+    width: 20vw;
+    min-width: 300px;
+    min-height: 75px;
+    animation: .5s ease descer;
+
+}
+
+.toast {
+
+    position:relative;
+    padding: .4rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-size: max(.8rem, .8vw);
+    align-items: center;
+    justify-content: space-between;
+    gap:.4rem;
+    border-radius: 8px;
+    background-color: var(--bg-2);
+    overflow: hidden;
+
+}
+
+@keyframes crescerLargura {
+
+    from {width: 0;}
+    to {width: 100%;}
+
+}
+
+.loadingToast {
+
+    position: absolute;
+    left: 0;
+    animation: crescerLargura 5s ease-in-out;
+    bottom:0;
+    content: "";
+    height: 4px;
+    border-radius: -8px;
+    width: 100%;
+    
+
+}
+
+.btnToast {
+
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color:var(--text-color);
+    border-radius: 4px;
+
+}
+
+.btnToast:hover {
+
+    background: var(--hover);
+
+}
+
+.textContent {
+
+    display: block;
+    flex: 1px 5 1
+
+
+}
+
+.success {
+
+    background-color: rgb(58, 213, 58);
+
+}
+
+.infoIcon, .successIcon, .errorIcon {
+
+    flex: 1px 1 1;
+
+}
+
+.successIcon {
+
+    color: rgb(58, 213, 58);
+
+}
+.errorIcon {
+
+    color:rgb(213, 41, 41);
+
+}
+
+.infoIcon {
+
+    color:rgb(75, 75, 238);
+
+}
+
+.info {
+
+    background-color: rgb(75, 75, 238);
+
+}
+
+.error {
+
+    background-color: rgb(213, 41, 41);
+
+}

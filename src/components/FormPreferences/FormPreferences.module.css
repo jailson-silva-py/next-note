@@ -1,0 +1,120 @@
+.form {
+
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+
+}
+
+.formRow {
+
+    display: flex;
+    flex-direction: column;
+    gap:.7rem;
+    flex: max-content 1 1;
+
+}
+
+.selectContent {
+
+    position: relative;
+    width: 80%;
+
+}
+
+.iconSelect {
+
+    position: absolute;
+    top:50%;
+    right: 5px;
+    transform: translateY(-50%);
+
+}
+
+.fontSelector {
+
+    width: 100%;
+    appearance: none;
+    border: none;
+    box-shadow: 0px 0px 1px var(--shadow-5-color);
+    background-color: var(--bg-2);
+    color: var(--text-color);
+    height:30px;
+    border-radius: 8px;
+    padding: 0 1rem;
+
+}
+
+.fontSelector:focus {
+
+    outline: var(--text-color) solid 1px;
+
+}
+
+.colorsContent {
+
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+    font-size: .8rem;
+    hyphens: auto;
+
+}
+
+.btnsForm {
+
+    margin-top: .4rem;
+    align-self: flex-end;
+    display: flex;
+    gap:1rem;
+    width: max(50%, 150px);
+
+}
+
+.btnsForm *{
+
+    flex: 20px 1 1;
+
+}
+
+.submit, .reset {
+
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    padding: 8px;
+    height: 35px;
+    box-shadow: 0px 0px 2px var(--shadow-5-color);
+    border-radius: 8px;
+    color:var(--text-color);
+    background-color: var(--primary-color);
+    background:var(--btn-gradient);
+    font-weight: 800;
+    font-family: inherit;
+
+}
+
+.submit:hover, .reset:hover {
+
+    box-shadow: 0px 0px 2px 1px var(--shadow-5-color);
+
+}
+
+.reset {
+
+    background: var(--red);
+
+}
+
+.inputColor {
+
+    cursor: pointer;
+    appearance: none;
+    padding: 0;
+    border: none;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 50%;
+
+}

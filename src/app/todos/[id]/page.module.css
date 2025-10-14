@@ -1,0 +1,99 @@
+.titleForm {
+
+    font-size: 1.6rem;
+
+}
+
+.btnContent {
+
+    position: absolute;
+    z-index: 4;
+    right: 10px;
+    top: 4px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:.4rem;
+
+}
+
+.btn {
+
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    border: none;
+    color:var(--text-color);
+    box-shadow: 0px 0px 1px 0px var(--shadow-5-color);
+    padding: 4px;
+    border-radius: 8px;
+
+}
+
+.btn svg {
+
+    stroke-width: 1;
+    width: clamp(24px, 3vw + 4px, 32px);
+    height: clamp(24px, 3vw + 4px, 32px);
+
+}
+
+.btn:hover {
+
+    background-color: var(--hover);
+
+}
+
+.iconEditContent {
+
+    position: relative;
+
+}
+
+.iconEditContent::after {
+
+    content: "";
+    opacity: .9;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    border-radius: 8px;
+    transform: rotate(-40deg);
+    height: 90%;
+    width: 2px;
+    background-color: var(--text-color);
+
+}
+
+.viewModeContent {
+
+    margin-top: 4rem;
+    padding: 1rem;
+    hyphens: auto;
+    word-break: break-all;
+    text-overflow: wrap;
+    text-align: justify;
+    max-width: min(700px, 90%);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+
+}
+
+.viewModeContent .btnContent {
+
+    top:-30px;
+}
+
+.viewModeContent .btn:has(.penIcon) {
+
+    visibility: hidden;
+
+}
+
+

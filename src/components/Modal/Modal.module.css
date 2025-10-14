@@ -1,0 +1,66 @@
+.fixedBgModal {
+
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    height: 100%;
+    width: 101dvw;
+    backdrop-filter: blur(2px);
+
+}
+
+.modal {
+
+    position: fixed;
+    border: none;
+    color:var(--text-color);
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: min(600px, 80%);
+    min-height: 300px;
+    border-radius: 16px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-2);
+    box-shadow: 0px 0px 2px 0px var(--shadow-5-color) ;
+
+}
+
+.modalHeader {
+
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+
+}
+
+.modalTitle {
+
+    font-weight: 500;
+    font-size: 1.6rem;
+
+}
+
+.btnClose { 
+
+    appearance: none;
+    background: transparent;
+    border: none;
+    color:var(--text-color);
+    margin-left: auto;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: .4s ease background;
+
+}
+
+
+.btnClose:hover {
+
+    background: var(--hover);
+
+}

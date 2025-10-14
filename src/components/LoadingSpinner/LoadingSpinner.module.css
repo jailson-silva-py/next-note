@@ -1,0 +1,18 @@
+@keyframes rotate {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+.iconLoading {
+    
+    animation: rotate ease-in-out .8s infinite;
+    width: 64px;
+    height: 64px;
+    color: var(--secondary-color);
+
+}

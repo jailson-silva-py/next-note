@@ -1,0 +1,45 @@
+{
+  "name": "next-todo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "prisma generate",
+    "dev": "next dev --turbopack",
+    "build": "prisma migrate deploy && next build --turbopack",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "cy:open": "cypress open"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.16.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "next": "15.5.2",
+    "next-auth": "^5.0.0-beta.29",
+    "next-themes": "^0.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/ui": "^3.2.4",
+    "cypress": "^15.4.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.2",
+    "jsdom": "^27.0.0",
+    "prisma": "^6.16.1",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}

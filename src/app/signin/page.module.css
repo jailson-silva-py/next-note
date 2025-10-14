@@ -1,0 +1,41 @@
+.formLogin {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    gap: 100px;
+    
+
+}
+
+.textContent {
+
+    margin-bottom: 2rem;
+    align-self: center;
+    width: max(50%, 300px);
+
+}
+
+.textContent h1 {
+
+    font-size: max(1.4rem, 1.6vw);
+    hyphens: auto;
+    word-break: keep-all;
+    text-align: justify;
+
+}
+
+.loginContent {
+    
+    margin-top: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+
+
+}
