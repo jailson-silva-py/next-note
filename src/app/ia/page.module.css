@@ -1,7 +1,7 @@
 .iaContent {
 
     margin: 0 auto;
-    height: 100%;
+    height: auto;
     width: min(700px, 90%);
 
 }
@@ -252,7 +252,7 @@
 
 .finalResponse {
 
-    margin-bottom: 10rem;
+    margin-bottom: 150px;
 
 }
 

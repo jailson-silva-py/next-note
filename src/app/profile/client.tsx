@@ -91,6 +91,7 @@ const ProfileClientPage = ({user}:Iprops) => {
             setPending(false)
             setToast(toastObj)
             setFile(null)
+            e.currentTarget && e.currentTarget.reset()
 
         })()
        

@@ -66,7 +66,8 @@ const Todos = () => {
 
         
 
-    }, [searchParams])
+    }, [searchParams.get('page'), 
+        searchParams.get('search')])
     
     
     useEffect(() => {
@@ -194,7 +195,7 @@ const Todos = () => {
             <button className={styles.btnAction}
             onClick={() => {router.replace('/todos/new')}}>
 
-                <HiOutlinePlusCircle/>
+                <HiOutlinePlusCircle size={32}/>
 
             </button>
             
@@ -202,7 +203,7 @@ const Todos = () => {
             ${deleteObj.deleteMode ? styles.deleteMode:''}`} 
             onClick={() => setDeleteObj(prev => ({...prev, deleteMode:!prev.deleteMode}))}>
 
-                <HiOutlineTrash/>
+                <HiOutlineTrash size={32}/>
 
             </button>
 

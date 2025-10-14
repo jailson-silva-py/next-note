@@ -37,6 +37,12 @@ const nextConfig: NextConfig = {
         hostname:'avatars.githubusercontent.com',
         pathname:'/**'
 
+      },
+
+      {
+        protocol:'https',
+        hostname: new URL(process.env.SUPABASE_URL!).hostname,
+        pathname:'/**'
       }
 
     ]

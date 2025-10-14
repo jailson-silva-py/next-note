@@ -7,6 +7,8 @@ import { revalidatePath } from 'next/cache';
 import { TodoByText } from './types/Todo';
 import { promises as fs } from 'fs'
 import path from 'path';
+import { createClient } from '@supabase/supabase-js';
+
 
 export const getUserById = async () => {
 
@@ -45,16 +47,38 @@ export const updateUserById = async (formData:FormData, pathname='/profile') => 
         
         if (imageFile) {
 
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-        await fs.mkdir(uploadDir, {recursive:true})
-        const newImageName = +Date.now()+imageFile.name
-        const filePath = path.join(uploadDir, newImageName)
+        const supabase = createClient(process.env.SUPABASE_URL!, 
+            process.env.SUPABASE_KEY!)
         const arrayBuffer = await imageFile.arrayBuffer()
-        await fs.writeFile(filePath, Buffer.from(arrayBuffer))
-        dataObj.image = `/uploads/${newImageName}`
+        const buffer = Buffer.from(arrayBuffer)
+        const filePath = `${session.user.id}/${Date.now()}-${imageFile.name}`
+
+        const options = {
+
+            contentType:imageFile.type,
+            upsert:true,
+            cacheControl:'3600'
 
         }
+        const { data, error } = await supabase.storage
+        .from('next-note').upload(filePath, buffer, options)
         
+        if (error) {
+
+        
+            return {text:error.message, 
+                type:'error', key:Date.now()} satisfies ToastObj
+
+        }
+
+        const { data:urlData } = supabase.storage.from('next-note')
+        .getPublicUrl(filePath)
+
+        
+
+        dataObj.image = urlData.publicUrl
+
+        }
         await prisma.user.update({
 
             where:{id:session.user.id},
@@ -70,7 +94,7 @@ export const updateUserById = async (formData:FormData, pathname='/profile') => 
 
     } catch {
 
-        return {text:'Dados do usuários salvos com sucesso!',
+        return {text:'Erro ao salvar os dados do usuário',
             key:Date.now(), type:'error'
         } satisfies ToastObj
 

@@ -103,6 +103,7 @@
 
     line-clamp: 2;
     line-height: 1.2em;
+    padding: 0 2px;
     max-height: 2.4em;
     display: -webkit-box;
     -webkit-box-orient: vertical;
