@@ -84,7 +84,6 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
 
     }, [editable, viewMode])
 
-    console.log(editable)
 
     return (
         <>

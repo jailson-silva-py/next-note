@@ -88,8 +88,6 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
 
             const data = await response.json()
 
-            console.log(new Date(data.createdAt))
-
             setLoading(false)
             setResult(data)
 

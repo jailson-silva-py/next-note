@@ -52,9 +52,6 @@ const FormPreferences = () => {
 
         })
 
-        console.log(getStorage('preferences'))
-        
-
     }
 
     const resetForm = () => {

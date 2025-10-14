@@ -64,7 +64,6 @@ const ProfileClientPage = ({user}:Iprops) => {
 
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        console.log(e.currentTarget)
 
         if (file && file?.size > 5 * 1024 * 1024) {
 

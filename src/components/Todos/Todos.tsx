@@ -164,7 +164,7 @@ const Todos = () => {
         })
 
         if(tarefaDeletada) {
-            console.log(tarefaDeletada)
+            
             
             setNotas((prev) => {
 

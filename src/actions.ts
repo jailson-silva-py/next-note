@@ -51,13 +51,10 @@ export const updateUserById = async (formData:FormData, pathname='/profile') => 
         const filePath = path.join(uploadDir, newImageName)
         const arrayBuffer = await imageFile.arrayBuffer()
         await fs.writeFile(filePath, Buffer.from(arrayBuffer))
-        console.log('img file')
         dataObj.image = `/uploads/${newImageName}`
 
         }
         
-        console.log('action sagaz')
-
         await prisma.user.update({
 
             where:{id:session.user.id},
@@ -236,7 +233,7 @@ export const createTodo = async (
     return {text:'Tarefa criada com sucesso!', type:'success', key:Date.now()}
 
     } catch(error) {
-        console.log(error)
+       
         return {text:String(error), type:'error', key:Date.now()}
 
     }

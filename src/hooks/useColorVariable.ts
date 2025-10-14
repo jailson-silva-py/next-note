@@ -40,8 +40,6 @@ const useColorVariable = () => {
         root.style.setProperty('--secondary-color', secondaryColor)
 
     }, [primaryColor, secondaryColor])
-
-    console.log(primaryColor, secondaryColor)
    
     return { primaryColor, setPrimaryColor, 
         secondaryColor, setSecondaryColor }
