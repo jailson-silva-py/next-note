@@ -7,7 +7,7 @@
 }
 
 .formChat {
-
+    z-index: 10;
     width: 100%;
     height: max-content;
     position: absolute;
@@ -215,7 +215,7 @@
     padding-right: 2rem;
     display: block;
     height: 100%;
-    width: 90%;
+    width: 80%;
     background-color: transparent;
     font-size: inherit;
     font-family: inherit;

@@ -2,17 +2,15 @@
 import Link from 'next/link';
 import styles from './NavBar.module.css'
 import { useState } from 'react'
-import { HiOutlineAdjustments, HiOutlineChatAlt, HiOutlineDocumentDuplicate, HiOutlineHome, HiOutlineLogout, HiOutlineSparkles} from 'react-icons/hi'
+import { HiOutlineAdjustments, HiOutlineDocumentDuplicate, HiOutlineHome, HiOutlineLogout, HiOutlineSparkles} from 'react-icons/hi'
 import Image from 'next/image';
-import { HiArrowLeftOnRectangle, HiOutlineChatBubbleLeft, HiOutlineDocumentPlus, HiOutlineHeart, HiOutlinePencilSquare } from 'react-icons/hi2';
+import { HiArrowLeftOnRectangle, HiOutlineDocumentPlus, HiOutlineHeart, HiOutlinePencilSquare } from 'react-icons/hi2';
 import { signOut } from 'next-auth/react';
 import Modal from '../Modal/Modal';
 import useCustomParams from '@/hooks/useCustomParams';
 import FormPreferences from '../FormPreferences/FormPreferences';
 import { User } from '@prisma/client'
 import BtnChangeTheme from '../BtnChangeTheme/BtnChangeTheme';
-import { BsChatHeart } from 'react-icons/bs';
-import { FaLightbulb } from 'react-icons/fa';
 
 const formatNome = (name:any) => {
     if (typeof name !== 'string') return
@@ -55,7 +53,7 @@ const NavBarClient = ({user}:Iprops) => {
                 </li>
                 <li>
 
-                    <ul className={classesDropdown}>
+                    <ul className={classesDropdown} onMouseLeave={() => setIsOpen(false)}>
 
                         <li title="Página Inicial" className={styles.listItem}>
                             <Link href='/'>
@@ -106,7 +104,7 @@ const NavBarClient = ({user}:Iprops) => {
             <span>Entrar</span>
            </Link>
            :
-           <div className={styles.profileContent} 
+           <div className={styles.profileContent} onMouseLeave={() => setOpenProfile(false)}
            onClick={() => setOpenProfile(!openProfile)} title="Abrir modal">
 
                 <Image src={user?.image || 'no-image-profile.jpg'} 

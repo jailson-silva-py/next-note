@@ -51,6 +51,7 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
     const [result, setResult] = useState<null | ResponseIa>(null)
     const [text, setText] = useState<textObj|null>(null)
     const startTimeRef = useRef<null | number>(null)
+    const refResponse = useRef<null | HTMLDivElement>(null)
 
     useEffect(() => {
 
@@ -90,6 +91,7 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
 
             setLoading(false)
             setResult(data)
+            
 
             } catch(error) {
 
@@ -102,6 +104,19 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
         })()
 
     }, [text])
+
+
+
+    useEffect(() => {
+
+        if (result && 'choices' in result && !loading && refResponse.current) {
+            refResponse.current
+            .scrollIntoView({ behavior: 'smooth',
+                block: 'start' });
+        }
+        
+
+    }, [result, loading])
 
     
     useEffect(() => {
@@ -144,9 +159,10 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
 
         {result && 'choices' in result && !loading   ? 
 
-        <div className={`${styles.ResponseIa} ${styles.finalResponse}`}>
+        <div className={`${styles.ResponseIa}
+        ${styles.finalResponse}`}>
 
-            <div className={styles.timeResponseContent}>
+            <div className={styles.timeResponseContent} ref={refResponse}>
 
             <HiOutlineLightBulb size={32}/>
             <span>Pensou por {getTimeResponseIA(result.created, startTimeRef.current!)}</span>
