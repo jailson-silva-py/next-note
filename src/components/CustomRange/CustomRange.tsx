@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import { HiPlusSm, HiMinus } from 'react-icons/hi'
+import { HiPlusSm, HiMinus, HiOutlinePlusSm, HiOutlineMinus } from 'react-icons/hi'
 import styles from './CustomRange.module.css'
 
 type CustomRangeProps = React.ComponentProps<'input'> & {
@@ -37,7 +37,7 @@ const CustomRange:React.FC<CustomRangeProps> = ({
 
         <div className={styles.rangeContent}>
             
-            <HiMinus className={styles.minus}/>
+            <HiOutlineMinus className={styles.minus}/>
             
             <div className={styles.falseRangeContent}>
                 
@@ -58,7 +58,7 @@ const CustomRange:React.FC<CustomRangeProps> = ({
             onChange={handleChangeRange}
             {...props}/>
 
-            <HiPlusSm className={styles.sum}/>
+            <HiOutlinePlusSm className={styles.sum}/>
 
         </div>
 

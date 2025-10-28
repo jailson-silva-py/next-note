@@ -13,6 +13,7 @@ import useCustomParams from '@/hooks/useCustomParams';
 import Modal from '../Modal/Modal';
 import Toast from '../Toast/Toast';
 import { ToastObj } from '@/types/ToastObj';
+import { ImSpinner10 } from 'react-icons/im';
 
 interface deleteObj {
 
@@ -231,7 +232,7 @@ const Todos = () => {
                 className={styles.btnSubmitSearch}>
                
                 {pending && searchParams.get('search') ?
-                <FaSpinner size={24} 
+                <ImSpinner10 size={24} 
                 className={`${styles.searchIcon} 
                 ${styles.loadingIconSearch}`}/>
                 :

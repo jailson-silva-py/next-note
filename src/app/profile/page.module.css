@@ -34,13 +34,24 @@
     background: none;
     outline: none;
     border: none;
-    box-shadow: 0px 0px 2px 0px var(--shadow-5-color);
+    box-shadow: 0px 0px 0px 1px var(--shadow-5-color);
     width: 100%;
     height: 50px;
     border-radius: 8px;
     color: var(--text-color);
     padding: 0 1rem;
     font-family: inherit;
+    font-size: var(--base-f-size) * 2;
+    font-weight: 300;
+    letter-spacing: 2px;
+
+}
+
+.input, .inputFileContent {
+
+    font-size: var(--base-f-size) * 2;
+    font-weight: 300;
+    letter-spacing: 2px;
 
 }
 
@@ -58,7 +69,7 @@
 .inputFileContent  {
 
     position: relative;
-    box-shadow: 0px 0px 2px 0px var(--shadow-5-color);
+    box-shadow: 0px 0px 0px 1px var(--shadow-5-color);
     border-radius: 8px;
     width: 100%;
     height: 100px;
@@ -75,10 +86,17 @@
     align-items: center;
     width: 80%;
     gap:.4rem;
-    font-size: 16px;
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+}
+.inputFileText svg{
+
+    stroke-width: .5;
+    transform: translateY(-10%);
+    min-height: 32px;
+    min-width: 32px;
 
 }
 
@@ -112,6 +130,8 @@
     text-wrap: wrap;
     word-break: break-all;
     text-overflow: ellipsis;
+    font-weight: 300;
+    letter-spacing: 1px;
    
 
 }

@@ -20,7 +20,7 @@ const Paginator:React.FC<PaginatorProps> = (
         Anterior
     </button>
     
-    <p>Página {page || 1} de {countPage || 1}</p>
+    <p><strong>{page || 1}</strong> de <strong>{countPage || 1}</strong></p>
  
     <button onClick={handleNext} type="submit" 
     className={styles.btnPaginator}>

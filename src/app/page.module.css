@@ -1,6 +1,27 @@
+@keyframes loading {
+
+  to {
+
+    width: 99%;
+
+  }
+
+}
+
+.loading {
+
+  animation: forwards .5s ease-in loading;
+  position: absolute;
+  left: 0;
+  height: 4px;
+  top:0;
+  background: var(--secondary-color);
+
+}
+
+
 .page {
 
-  background: var(--bg-gradient);
   height: calc(100% - 100px - 1rem);
   display: flex;
   align-items: center;
@@ -36,12 +57,18 @@
   font-size: max(1.4rem, 2vw);
   flex: 1px 1 1;
   padding: 0 4px;
+  letter-spacing: 2px;
+  word-break: keep-all;
+  hyphens: auto;
+  line-height: 1.2em;
+  font-weight: 400;
 
 }
 
 
 .introductionText {
 
+  padding: 0 4px;
   position: relative;
   font-size: max(1rem, 1.2vw);
   text-align: justify;
@@ -49,7 +76,12 @@
   hyphens: auto;
   flex: 1px 1 1;
   height: 100%;
-  padding: 0 4px;
+ 
+  letter-spacing: 2px;
+  word-break: break-all;
+  hyphens: auto;
+  line-height: 1.2em;
+  font-weight: 300;
 
 }
 
@@ -70,13 +102,17 @@
 
 .linkCreate {
 
-  margin-top: 2rem;
-  color: var(--text-color);
+  margin-top: 3rem;
+  color: var(--text-color-2);
   background: var(--btn-gradient);
-  padding: 12px;
+  padding: 16px;
+  min-height: 40px;
+  min-width: 100px;
   border-radius: 8px;
-  box-shadow: 0px 0px 1px 0px var(--shadow-5-color);
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: 2px;
+  box-shadow: 0 0 0 1px var(--shadow-5-color);
+  font-size: 14px;
 
 }
 

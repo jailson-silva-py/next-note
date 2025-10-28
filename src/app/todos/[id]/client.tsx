@@ -7,7 +7,7 @@ import Toast from "@/components/Toast/Toast"
 import { ToastObj } from "@/types/ToastObj"
 import { Todo } from "@/types/Todo"
 import { MouseEvent, useActionState, useCallback, useState } from "react";
-import { HiOutlineEye, HiOutlinePencil } from "react-icons/hi2";
+import { HiEllipsisVertical, HiOutlineEye, HiOutlinePencil } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
 import styles from './page.module.css'
 
@@ -16,6 +16,7 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
 
     const [editable, setEditable] = useState(true)
     const [viewMode, setViewMode] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
     const handleAction = async (formState:ToastObj, formData:FormData) => {
 
@@ -58,17 +59,23 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
         return (
 
             <div className={styles.btnContent}>
-            <button onClick={handleBtnEdit} 
+            <button className={styles.btnDrop} 
+            onClick={() => setOpenMenu((prev) => !prev)}>
+                <HiEllipsisVertical size={32}/>
+            </button>
+
+            { openMenu && <div className={styles.editViewContent}>
+            {!viewMode && <button onClick={handleBtnEdit} 
             title="Desabilitar / Habilitar edição de nota"
             className={styles.btn}>
                 {
-                editable ? 
+                editable ?
                 <HiOutlinePencil className={styles.penIcon}/> :
                 <div className={styles.iconEditContent}>
                 <HiOutlinePencil className={styles.penIcon}/>
                 </div>
                 }
-            </button>
+            </button>}
             <button onClick={handleBtnViewMode} 
             title="Ativar / Desativar modo visualização"
             className={styles.btn}>
@@ -78,11 +85,12 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
                 <HiOutlineEyeOff/>
                 }
             </button>
+            </div>}
             </div>
 
         )
 
-    }, [editable, viewMode])
+    }, [editable, viewMode, openMenu])
 
 
     return (

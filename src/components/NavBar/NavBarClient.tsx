@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import Link, { useLinkStatus } from 'next/link';
 import styles from './NavBar.module.css'
 import { useState } from 'react'
 import { HiOutlineAdjustments, HiOutlineDocumentDuplicate, HiOutlineHome, HiOutlineLogout, HiOutlineSparkles} from 'react-icons/hi'
@@ -11,6 +11,7 @@ import useCustomParams from '@/hooks/useCustomParams';
 import FormPreferences from '../FormPreferences/FormPreferences';
 import { User } from '@prisma/client'
 import BtnChangeTheme from '../BtnChangeTheme/BtnChangeTheme';
+import { ToastObj } from '@/types/ToastObj';
 
 const formatNome = (name:any) => {
     if (typeof name !== 'string') return
@@ -23,21 +24,22 @@ interface Iprops {
     user:User | null,
 
 }
-
+const initialToast:ToastObj = {text:'', type:'info', key:0}
 const NavBarClient = ({user}:Iprops) => {
-   
+
     const [isOpen, setIsOpen] = useState(false)
     const [openProfile, setOpenProfile] = useState(false)
     const [openPreferences, setOpenPreferences] = useState(false)
+    const [toast, setToast] = useState<ToastObj>(initialToast)
     const {updateUrl, params} = useCustomParams()
     const classLinhasContent = `${isOpen ? styles.closeContent : styles.linhasContent}`
     const classesDropdown = `${styles.dropdown} ${isOpen ? styles.visible : styles.invisible}`
-    
+
+
     return (
         <>
         <nav className={styles.nav}>
-        
-            
+
             <ul className={styles.navList}>
                 <li>
 
@@ -108,7 +110,7 @@ const NavBarClient = ({user}:Iprops) => {
            onClick={() => setOpenProfile(!openProfile)} title="Abrir modal">
 
                 <Image src={user?.image || 'no-image-profile.jpg'} 
-                width={50} height={50} 
+                width={75} height={75} 
                 alt={'Foto de'+user?.name} 
                 loading='eager' priority/>
                 <div className={styles.profileName} 
@@ -161,9 +163,9 @@ const NavBarClient = ({user}:Iprops) => {
 
         <Modal valueParam="preferences" objState={
             {state:openPreferences, setState:setOpenPreferences}
-        } textTitle="Preferências">
+        } textTitle="Preferências" toast={toast}>
 
-            <FormPreferences/>
+            <FormPreferences setToast={setToast}/>
             
 
         </Modal>

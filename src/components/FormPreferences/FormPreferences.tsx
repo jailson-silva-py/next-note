@@ -5,12 +5,19 @@ import CustomRange from "../CustomRange/CustomRange"
 import styles from './FormPreferences.module.css'
 import useFontFamily from "@/hooks/useFontFamily"
 import useColorVariable from "@/hooks/useColorVariable"
-import { HiChevronUpDown } from 'react-icons/hi2'
+import { HiOutlineChevronUpDown } from 'react-icons/hi2'
 import useLocalStorage from "@/hooks/useLocalStorage"
 import { PreferencesType } from "@/types/Preferences"
+import { ToastObj } from "@/types/ToastObj";
+
+interface Iprops {
+
+    setToast:React.Dispatch<React.SetStateAction<ToastObj>>
+
+}
 
 
-const FormPreferences = () => {
+const FormPreferences = ({setToast}:Iprops) => {
     
     const { setStorage, getStorage } = useLocalStorage()
     const [fontSize, setFontSize] = useState(() => {
@@ -26,8 +33,8 @@ const FormPreferences = () => {
         setPrimaryColor, setSecondaryColor } = useColorVariable()
 
     const { fontIndex, setFontIndex } = useFontFamily()
-    
 
+    
     const handleForm = (e:FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
@@ -52,6 +59,9 @@ const FormPreferences = () => {
 
         })
 
+        setToast({text:'Preferências salvas!', 
+            type:'success', key:Date.now()} as ToastObj)
+
     }
 
     const resetForm = () => {
@@ -66,7 +76,7 @@ const FormPreferences = () => {
     
 
     return (
-
+    <>
     <form onSubmit={handleForm} className={styles.form} onReset={resetForm}>
 
         <div className={styles.formRow} onReset={resetForm}>
@@ -86,7 +96,7 @@ const FormPreferences = () => {
                 
 
             </select>
-            <HiChevronUpDown className={styles.iconSelect}/>
+            <HiOutlineChevronUpDown className={styles.iconSelect}/>
             </div>
 
         </div>
@@ -103,7 +113,7 @@ const FormPreferences = () => {
 
         <div className={styles.formRow}>
     
-        <div>Cores</div>
+        <h4>Cores</h4>
         <div className={styles.colorsContent}>
 
             <label htmlFor="primaryColor">Cor primária</label>
@@ -132,9 +142,9 @@ const FormPreferences = () => {
 
         </div>
         
-
+    
     </form>
-
+    </>
     )
 
 }

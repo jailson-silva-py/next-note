@@ -1,19 +1,22 @@
 "use client";
-import { HiX } from "react-icons/hi";
+import { HiOutlineX, HiX } from "react-icons/hi";
 import styles from "./Modal.module.css"
 import useCustomParams from "@/hooks/useCustomParams";
 import {  useEffect } from "react";
+import Toast from "../Toast/Toast";
+import { ToastObj } from "@/types/ToastObj";
 
 type ModalProps = {
 
     children: React.ReactNode
     textTitle:string;
     objState:{state: boolean, setState:React.Dispatch<React.SetStateAction<boolean>>}
+    toast?:ToastObj;
     valueParam:string
 } 
 
-
-const Modal:React.FC<ModalProps> = ({children, textTitle, objState, valueParam}) => {
+const Modal:React.FC<ModalProps> = ({children, 
+    toast, textTitle, objState, valueParam}) => {
 
     const { params, searchParams, updateUrl } = useCustomParams()
     const handleCloseBtn = () => {
@@ -64,7 +67,7 @@ const Modal:React.FC<ModalProps> = ({children, textTitle, objState, valueParam})
 
                     <h1 className={styles.modalTitle}>{textTitle}</h1>
                     <button className={styles.btnClose} onClick={handleCloseBtn}>
-                    <HiX size={28}/>
+                    <HiOutlineX size={28}/>
                     </button>
 
                 </div>
@@ -74,6 +77,8 @@ const Modal:React.FC<ModalProps> = ({children, textTitle, objState, valueParam})
             </dialog>
             </div>
         }
+        {toast && <Toast text={toast.text}
+        type={toast.type} key={toast.key}/>}
         </>
 
     )

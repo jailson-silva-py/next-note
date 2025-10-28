@@ -116,7 +116,7 @@
 .timeResponseContent svg {
 
     width: max-content;
-    stroke-width: 1;
+    stroke-width: .5;
 
 }
 
@@ -246,7 +246,7 @@
 
 .chatSubmit  svg {
 
-    stroke-width: 1;
+    stroke-width: .5;
 
 }
 
@@ -275,6 +275,6 @@
 
 .errorChat button:hover svg {
 
-    stroke-width: 3;
+    stroke-width: 1;
 
 }
