@@ -1,7 +1,6 @@
 import Todos from "@/components/Todos/Todos"
 import { auth } from "auth";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 
 const TodosPage =  async () => {
 
@@ -10,11 +9,8 @@ const TodosPage =  async () => {
    if (!session) redirect('/signin')
     return (
 
-        <Suspense> 
+        <Todos/>           
 
-            <Todos/>           
-
-        </Suspense>
 
         )
 

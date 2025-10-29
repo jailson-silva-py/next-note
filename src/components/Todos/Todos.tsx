@@ -1,19 +1,18 @@
 "use client";
 import Link from 'next/link'
 import styles from './Todos.module.css'
-import { HiOutlinePlusCircle, HiOutlineSearch, HiOutlineTrash } from 'react-icons/hi'
-import { FormEvent, Fragment, MouseEvent, useEffect, useState } from 'react'
+import { HiOutlinePlus, HiOutlinePlusCircle, HiOutlineSearch, HiOutlineTrash } from 'react-icons/hi'
+import { FormEvent, Fragment, MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { deleteTodoById, findTodosByText } from '@/actions'
 import Paginator from '../Paginator/Paginator'
-import { FaSpinner } from 'react-icons/fa'
-import { HiOutlineArchiveBoxXMark } from 'react-icons/hi2'
+import { HiEllipsisVertical, HiOutlineArchiveBoxXMark } from 'react-icons/hi2'
 import { TodoByText } from '@/types/Todo';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import useCustomParams from '@/hooks/useCustomParams';
 import Modal from '../Modal/Modal';
 import Toast from '../Toast/Toast';
 import { ToastObj } from '@/types/ToastObj';
-import { ImSpinner10 } from 'react-icons/im';
+import Submit from '../Submit/Submit';
 
 interface deleteObj {
 
@@ -21,6 +20,23 @@ interface deleteObj {
     noteIndex: number | null,
 
 }
+
+interface optionsOpen {
+
+    index: null | number;
+    open:boolean
+
+}
+
+const handleBtnOptions = (index:number,
+    setState:React.Dispatch<React.SetStateAction<optionsOpen>>) => 
+        (e:MouseEvent<HTMLButtonElement>) => {
+
+        e.preventDefault()
+        setState(prev => ({index, open:!prev.open}))
+
+}
+
 const initialDeleteObj = {deleteMode:false, noteIndex:null}
 
 const Todos = () => {
@@ -42,7 +58,8 @@ const Todos = () => {
     const [toastObj, setToastObj] = useState<ToastObj>(
         {text:'', type:'info',key:0})
     
-
+    const [optionsOpen, setOptionsOpen] = useState<optionsOpen>(
+        {index:null, open:false})
 
     useEffect(() => {
 
@@ -191,24 +208,7 @@ const Todos = () => {
 
     return (
         <div className={styles.todosContent}>
-        <div className={styles.btnActionsContent}>
-
-            <button className={styles.btnAction}
-            onClick={() => {router.replace('/todos/new')}}>
-
-                <HiOutlinePlusCircle size={32}/>
-
-            </button>
-            
-            <button className={`${styles.btnAction}
-            ${deleteObj.deleteMode ? styles.deleteMode:''}`} 
-            onClick={() => setDeleteObj(prev => ({...prev, deleteMode:!prev.deleteMode}))}>
-
-                <HiOutlineTrash size={32}/>
-
-            </button>
-
-        </div>
+        
         <form className={styles.formSearch} onSubmit={handleSearch}>
 
             {/* Valor para controle de página */}
@@ -232,9 +232,7 @@ const Todos = () => {
                 className={styles.btnSubmitSearch}>
                
                 {pending && searchParams.get('search') ?
-                <ImSpinner10 size={24} 
-                className={`${styles.searchIcon} 
-                ${styles.loadingIconSearch}`}/>
+                <LoadingSpinner className={styles.loadingIconSearch}/>
                 :
                 <HiOutlineSearch size={32} 
                 className={styles.searchIcon}/>
@@ -245,20 +243,56 @@ const Todos = () => {
         </form>
         
         {!pending && notas && notas?.tarefas.length > 0? 
-        
+        <>
+        <div className={styles.btnActionsContent}>
+
+            <button className={styles.btnAction}
+            onClick={() => {router.replace('/todos/new')}}>
+                
+                <HiOutlinePlus size={32}/>
+                <span>Criar Nota</span>
+
+            </button>
+
+        </div>
         <ul className={styles.todoList}>
 
-            {notas?.tarefas.map((todo) => {
+            {notas?.tarefas.map((todo, i) => {
 
                 return (
                 <Fragment key={todo.id}>
-                {!deleteObj.deleteMode ? 
-
-                //Caso deleteMode for false retorne um Link
+               
                 <Link href={`todos/${todo.id}`} 
-                className={styles.linkTodo}>
+                className={styles.linkTodo} style={{animationDelay:`${i*0.2}s`}}>
                 <li>
-                    
+                    <button className={styles.optionsContent}
+                    onClick={handleBtnOptions(i, setOptionsOpen)}>
+                        <HiEllipsisVertical size={32} className={styles.optionIcon}/>
+                    {optionsOpen.open && 
+                    optionsOpen.index === i && 
+                    <div className={styles.options}>
+                        <Link className={styles.optionsItem}
+                        href={`/todos/${todo.id}?mode=view`}>
+                        Visualizar
+                        </Link>
+                        <Link href={`/todos/${todo.id}`}className={styles.optionsItem}>
+                            Editar
+                        </Link>
+                        <button className={styles.optionsItem}
+                        onClick={ () => {
+                        setDeleteObj(prev => {
+
+                            return {...prev, noteIndex:todo.id}
+
+
+                        })  
+                        setDeleteDialog(true)
+                        }}>
+                            Deletar
+                        </button>
+
+                    </div>}
+                    </button>
                     <h1 className={styles.todoTitle}>{todo.title}</h1>
                     <p className={styles.todoDescription}>
                         {todo.description}
@@ -266,32 +300,9 @@ const Todos = () => {
 
                 </li>
                 </Link>
-
-                :
-                // Caso deleteMode for true retorne um li normal 
-                // com onClick
-                
-                <div className={styles.linkTodo}>
-                <li className={styles.deletion} onClick={ () => {
-                    setDeleteObj(prev => {
-
-                        return {...prev, noteIndex:todo.id}
-
-
-                    })  
-                    setDeleteDialog(true)
-                }}>
-                    
-                    <h1 className={styles.todoTitle}>{todo.title}</h1>
-                    <p className={styles.todoDescription}>
-                        {todo.description}
-                    </p>
-
-                </li>
-                </div>
                 
                 
-                }
+                
                 </Fragment>
                 )
 
@@ -300,6 +311,7 @@ const Todos = () => {
         })}
 
         </ul>
+        </>
         : !pending && notas?.tarefas.length === 0 ? 
         <p className={styles.textSemNotas}>Não há nehuma nota.</p> :
         <LoadingSpinner/>
@@ -319,17 +331,13 @@ const Todos = () => {
                 Após a exclusão, ela <strong>não poderá ser recuperada.</strong></p>
                 <div className={styles.btnSubmitDeleteContent}>
 
-                <button type="reset" 
-                className={`${styles.btnSubmitDelete} 
-                ${styles.deleteCancel}`}>
-                    Não
-                </button>
+                <Submit type="reset" 
+                className={`${styles.deleteCancel}`} 
+                text='Cancelar'/>
 
-                <button type="submit" 
+                <Submit type="submit" 
                 className={`${styles.btnSubmitDelete} 
-                ${styles.deleteConfirm}`}>
-                Sim
-                </button>
+                ${styles.deleteConfirm}`} text='Deletar'/>
                 
                 </div>
 

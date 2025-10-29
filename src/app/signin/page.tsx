@@ -1,9 +1,8 @@
-import SignInGoogle from "@/components/SignInGoogle/SignInGoogle";
 import styles from './page.module.css'
 import { auth, signIn } from "auth"
 import { redirect } from "next/navigation";
-import SignInGithub from "@/components/SignInGitHub/SignInGithub";
-import SignInDiscord from "@/components/SignInDiscord/SignInDiscord";
+import SignInButton from "@/components/SignInButton/SignInButton";
+import { TbBrandDiscord, TbBrandGithub, TbBrandGithubFilled, TbBrandGoogle } from "react-icons/tb";
 
 const SignIn = async () => {
 
@@ -11,18 +10,22 @@ const SignIn = async () => {
     
     if (session) redirect('/')
     return (
-
+        <div className={styles.signAllContent}>
         <div className={styles.loginContent}>
         <div className={styles.textContent}>
-        <h1>Cadastre-se ou faça Login com sua conta Google...  </h1>
+
+            <h1>Welcome!</h1>
+            <p>Sign in to Next Note to continue.</p>
+
         </div>
+        
         <form className={styles.formLogin} action={async () => {
             "use server";
             await signIn("google")
 
         }}>
             
-            <SignInGoogle/>
+            <SignInButton Icon={TbBrandGoogle} nameLogin="Google"/>
 
         </form>
         <form className={styles.formLogin} action={async () => {
@@ -31,7 +34,7 @@ const SignIn = async () => {
 
         }}>
             
-            <SignInGithub/>
+            <SignInButton Icon={TbBrandGithub} nameLogin="Github"/>
 
         </form>
         <form className={styles.formLogin} action={async () => {
@@ -39,12 +42,12 @@ const SignIn = async () => {
             await signIn("discord")
 
         }}>
-            
-            <SignInDiscord/>
+            <SignInButton Icon={TbBrandDiscord} nameLogin="Google"/>
 
         </form>
         </div>
-
+        </div>
+        
     )
 
 

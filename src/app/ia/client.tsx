@@ -141,6 +141,8 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
 
     }   
 
+    console.log(result)
+    console.log(error)
 
     return (
 
@@ -214,7 +216,7 @@ const IaPageClient  = ({api, token}:{api:string, token:string}) => {
             <button type="submit" className={styles.chatSubmit} 
             disabled={loading}>
 
-                <HiOutlineArrowUp size={24}/>
+                <HiOutlineArrowUp size={18}/>
 
             </button>
             </div>

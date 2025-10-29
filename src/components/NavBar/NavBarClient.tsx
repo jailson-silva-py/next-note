@@ -1,10 +1,10 @@
 "use client";
-import Link, { useLinkStatus } from 'next/link';
+import Link from 'next/link';
 import styles from './NavBar.module.css'
 import { useState } from 'react'
 import { HiOutlineAdjustments, HiOutlineDocumentDuplicate, HiOutlineHome, HiOutlineLogout, HiOutlineSparkles} from 'react-icons/hi'
 import Image from 'next/image';
-import { HiArrowLeftOnRectangle, HiOutlineDocumentPlus, HiOutlineHeart, HiOutlinePencilSquare } from 'react-icons/hi2';
+import { HiOutlineArrowLeftOnRectangle, HiOutlineDocumentPlus, HiOutlineHeart, HiOutlinePencilSquare } from 'react-icons/hi2';
 import { signOut } from 'next-auth/react';
 import Modal from '../Modal/Modal';
 import useCustomParams from '@/hooks/useCustomParams';
@@ -43,14 +43,14 @@ const NavBarClient = ({user}:Iprops) => {
             <ul className={styles.navList}>
                 <li>
 
-                    <div className={classLinhasContent} 
+                    <button className={classLinhasContent} 
                     onClick={() => setIsOpen(!isOpen)}>
 
                     <div className={styles.linha1}></div>
                     <div className={styles.linha2}></div>
                     <div className={styles.linha3}></div>
 
-                    </div>  
+                    </button>  
 
                 </li>
                 <li>
@@ -59,31 +59,34 @@ const NavBarClient = ({user}:Iprops) => {
 
                         <li title="Página Inicial" className={styles.listItem}>
                             <Link href='/'>
-                            <HiOutlineHome  className={styles.icon}/>
+                            <HiOutlineHome  className={styles.icon} pathLength={1}/>
                             </Link>
                         </li>
 
                         <li title="Ver Notas" className={styles.listItem}>
                             <Link href='/todos?page=1'>
-                            <HiOutlineDocumentDuplicate  className={styles.icon}/>
+                            <HiOutlineDocumentDuplicate  className={styles.icon}
+                            pathLength={1}/>
                             </Link>
                         </li>
 
                         <li title="Nova Nota" className={styles.listItem}>
                             <Link href='/todos/new'>
-                            <HiOutlineDocumentPlus  className={styles.icon}/>
+                            <HiOutlineDocumentPlus  className={styles.icon}
+                            pathLength={1}/>
                             </Link>
                         </li>
 
                         <li title="Resumo com IA" className={styles.listItem}>
                             <Link href='/ia'>
-                            <HiOutlineSparkles  className={styles.icon}/>
+                            <HiOutlineSparkles  className={styles.icon}
+                            pathLength={1}/>
                             </Link>
                         </li>
 
                         <li title="Mudar Tema" className={styles.listItem}>
             
-                           <BtnChangeTheme/>
+                           <BtnChangeTheme className={styles.icon}/>
                            
                         </li>
                         
@@ -102,7 +105,7 @@ const NavBarClient = ({user}:Iprops) => {
       
            { !user ? 
            <Link className={styles.signIn} href='/signin'>
-            <HiArrowLeftOnRectangle size={32}/>
+            <HiOutlineArrowLeftOnRectangle size={32}/>
             <span>Entrar</span>
            </Link>
            :
@@ -125,7 +128,8 @@ const NavBarClient = ({user}:Iprops) => {
                     <Link href='/profile'>
                     <li title="Edite suas informações">
 
-                        <HiOutlinePencilSquare size={24}/>
+                        <HiOutlinePencilSquare size={24} 
+                        className={styles.icon}/>
                         <span>Editar</span>
                     </li>
                     </Link>
@@ -138,14 +142,15 @@ const NavBarClient = ({user}:Iprops) => {
 
                     }}>
 
-                        <HiOutlineAdjustments size={24}/>
+                        <HiOutlineAdjustments size={24}
+                        className={styles.icon} pathLength={1}/>
                         <span>Preferências</span>
 
                     </li>
 
                     <li title="Sair desta conta" onClick={() => signOut()}>
 
-                        <HiOutlineLogout size={24}/>
+                        <HiOutlineLogout size={24} className={styles.icon}/>
                         <span>Log out</span>
 
                     </li>

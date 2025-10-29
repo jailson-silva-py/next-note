@@ -1,0 +1,61 @@
+
+
+.btnSignIn {
+
+    cursor: pointer;
+    width: min(500px, 100%);
+    border: none;
+    height: 50px;
+    box-shadow: 
+    0 0 0 1px var(--shadow-5-color),
+    1px 1px 0 0 var(--shadow-5-color),
+    0 0 2px 0 var(--shadow-5-color);
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+    font-size: 14px;
+    color: var(--text-color);
+    font-weight: 300;
+    letter-spacing: 2px;
+    transition: .5s ease-out transform, box-shadow .5 ease-out;
+
+
+}
+
+.btnSignIn:hover {
+    
+    transform: translateY(-5px);  
+    background-color: var(--bg-2);
+    box-shadow: 
+    0 0 0 1px var(--shadow-5-color),
+    2px 2px 0 0 var(--shadow-5-color),
+    0 0 100px 0 var(--shadow-5-color);
+
+}
+
+.btnSignIn:focus{
+
+    opacity: 0.5;
+
+}
+
+.btnSignIn:hover .icon {
+
+   stroke-width: 1;
+
+}
+
+.icon {
+
+    stroke-width: .5;
+    color:var(--text-color);
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    min-height: 32px;
+   
+}

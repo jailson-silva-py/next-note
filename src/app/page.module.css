@@ -13,7 +13,7 @@
   animation: forwards .5s ease-in loading;
   position: absolute;
   left: 0;
-  height: 4px;
+  height: 5px;
   top:0;
   background: var(--secondary-color);
 

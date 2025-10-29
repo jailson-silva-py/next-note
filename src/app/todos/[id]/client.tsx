@@ -10,12 +10,26 @@ import { MouseEvent, useActionState, useCallback, useState } from "react";
 import { HiEllipsisVertical, HiOutlineEye, HiOutlinePencil } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
 import styles from './page.module.css'
+import useCustomParams from "@/hooks/useCustomParams";
+
 
 
 export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
 
-    const [editable, setEditable] = useState(true)
-    const [viewMode, setViewMode] = useState(false)
+    const { params, updateUrl,  searchParams } = useCustomParams()
+    const [editable, setEditable] = useState(() => {
+
+        const paramMode = searchParams.get('edit')
+        return paramMode === null ? true : paramMode === 'true'
+
+    })
+    const [viewMode, setViewMode] = useState(() => {
+
+        const paramMode = searchParams.get('mode')
+      
+        return paramMode === 'view'
+
+    })
     const [openMenu, setOpenMenu] = useState(false)
 
     const handleAction = async (formState:ToastObj, formData:FormData) => {
@@ -43,6 +57,8 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
     const handleBtnEdit = (e:MouseEvent) => {
 
         e.preventDefault()
+        params.set('edit', `${!editable}`)
+        updateUrl()
         setEditable(prev => !prev)
 
     }
@@ -50,9 +66,12 @@ export const TodoPageClient =  ({todo, id}:{todo:Todo, id:string}) => {
     const handleBtnViewMode = (e:MouseEvent) => {
 
         e.preventDefault()
+        params.set('mode', 'view')
+        updateUrl()
         setViewMode(prev => !prev)
 
     }
+
 
     const BtnEditViewContent = useCallback(() => {
 

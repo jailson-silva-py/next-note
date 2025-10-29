@@ -65,7 +65,7 @@ const Modal:React.FC<ModalProps> = ({children,
 
                 <div className={styles.modalHeader}>
 
-                    <h1 className={styles.modalTitle}>{textTitle}</h1>
+                    <h2 className={styles.modalTitle}>{textTitle}</h2>
                     <button className={styles.btnClose} onClick={handleCloseBtn}>
                     <HiOutlineX size={28}/>
                     </button>

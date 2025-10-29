@@ -3,7 +3,7 @@ import { HiOutlineMoon, HiOutlineSun, HiSun } from 'react-icons/hi'
 import { HiMoon } from 'react-icons/hi2'
 import styles from './BtnChangeTheme.module.css'
 
-const BtnChangeTheme = () => {
+const BtnChangeTheme = (props:React.ComponentProps<'svg'>) => {
 
     const {theme, setTheme} = useTheme()
 
@@ -18,9 +18,9 @@ const BtnChangeTheme = () => {
 
       {theme === 'light' ? 
         
-        <HiOutlineMoon size={32}/>
+        <HiOutlineMoon size={32} pathLength={1} {...props}/>
         :
-        <HiOutlineSun size={32}/>
+        <HiOutlineSun size={32} pathLength={1} {...props}/>
 
       }  
 

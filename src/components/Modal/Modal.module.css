@@ -9,8 +9,21 @@
 
 }
 
+@keyframes showFromFullWidth {
+
+    from {
+
+        opacity: 20%;
+        border-radius: 50%;
+        background-color: transparent;
+
+    }
+
+}
+
 .modal {
 
+    animation: showFromFullWidth .5s;
     position: fixed;
     border: none;
     color:var(--text-color);
@@ -41,8 +54,8 @@
 
 .modalTitle {
 
-    font-weight: 500;
-    font-size: 1.6rem;
+    font-weight: 400;
+    
 
 }
 

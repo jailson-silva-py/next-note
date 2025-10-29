@@ -10,7 +10,7 @@ const Submit:React.FC<SubmitProps> = ({text, ...props}) => {
 
     return (
 
-        <button type="submit" className={styles.btnSubmit} {...props}>
+        <button type="submit" {...props} className={`${styles.btnSubmit} ${props.className}`}>
             {text}
         </button>
 
